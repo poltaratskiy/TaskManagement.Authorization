@@ -2,6 +2,7 @@ using NUnit.Framework;
 
 namespace TaskManagement.Lib.Authorization.Tests
 {
+    /// <summary> Tests </summary>
     public class Tests
     {
         [SetUp]
