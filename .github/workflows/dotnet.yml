@@ -27,6 +27,6 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal src
     - name: Create package
-      run: dotnet pack --configuration Debug src
+      run: dotnet pack --configuration Debug src/TaskManagement.Lib.Authorization
     - name: Publish Nuget Package
       run: dotnet nuget push src/TaskManagement.Lib.Authorization/bin/Debug/*.nupkg -k {{secrets.GITHUB_TOKEN}} -s https://nuget.pkg.github.com/poltaratskiy/index.json
