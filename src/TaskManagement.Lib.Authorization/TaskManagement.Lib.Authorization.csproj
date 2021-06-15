@@ -1,7 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://nuget.pkg.github.com/poltaratskiy/TaskManagement.Lib.Authorization</PackageProjectUrl>
   </PropertyGroup>
 
 </Project>
