@@ -19,7 +19,7 @@ jobs:
         dotnet-version: 5.0.x
         source-url: https://nuget.pkg.github.com/poltaratskiy/index.json
       env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        NUGET_AUTH_TOKEN: ${{secrets.NUGET_WRITE_KEY}}
     - name: Restore dependencies
       run: dotnet restore src
     - name: Build
