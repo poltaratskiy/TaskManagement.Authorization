@@ -2,8 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <RepositoryUrl>https://nuget.pkg.github.com/poltaratskiy/TaskManagement.Lib.Authorization</RepositoryUrl>
+    <RepositoryUrl>https://github.com/poltaratskiy/TaskManagement.Lib.Authorization</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
