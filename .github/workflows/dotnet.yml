@@ -19,7 +19,7 @@ jobs:
         dotnet-version: 5.0.x
         source-url: https://nuget.pkg.github.com/poltaratskiy/index.json
       env:
-        NUGET_AUTH_TOKEN: ${{secrets.NUGET_WRITE_KEY}}
+        NUGET_AUTH_TOKEN: ${{ secrets.NUGET_WRITE_KEY1 }}
     - name: Restore dependencies
       run: dotnet restore src
     - name: Build
@@ -29,4 +29,4 @@ jobs:
     - name: Create package
       run: dotnet pack --configuration Debug src/TaskManagement.Lib.Authorization
     - name: Publish Nuget Package
-      run: dotnet nuget push src/TaskManagement.Lib.Authorization/bin/Debug/*.nupkg -k {{ secrets.NUGET_WRITE_KEY1 }} -s https://nuget.pkg.github.com/poltaratskiy/index.json
+      run: dotnet nuget push src/TaskManagement.Lib.Authorization/bin/Debug/*.nupkg -s https://nuget.pkg.github.com/poltaratskiy/index.json
