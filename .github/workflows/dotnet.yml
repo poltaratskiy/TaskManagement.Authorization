@@ -34,7 +34,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Create package
       working-directory: ${{ env.DIRECTORY }}
-      run: dotnet pack --no-build --configuration Debug TaskManagement.Lib.Authorization
+      run: dotnet pack --no-build --configuration Debug -p:VersionSuffix=$GITHUB_RUN_NUMBER #TaskManagement.Lib.Authorization
     #- name: Publish Nuget Package
     #  working-directory: ${{ env.DIRECTORY }}
     #  run: dotnet nuget push TaskManagement.Lib.Authorization/bin/Debug/*.nupkg
