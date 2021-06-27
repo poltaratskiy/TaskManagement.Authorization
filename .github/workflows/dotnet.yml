@@ -27,10 +27,14 @@ jobs:
       working-directory: ${{ env.DIRECTORY }}
       run: dotnet restore
     - name: Build
+      working-directory: ${{ env.DIRECTORY }}
       run: dotnet build --no-restore --configuration Debug
     - name: Test
-      run: dotnet test --no-build --verbosity normal src
+      working-directory: ${{ env.DIRECTORY }}
+      run: dotnet test --no-build --verbosity normal
     - name: Create package
-      run: dotnet pack --configuration Debug src/TaskManagement.Lib.Authorization
+      working-directory: ${{ env.DIRECTORY }}
+      run: dotnet pack --configuration Debug TaskManagement.Lib.Authorization
     - name: Publish Nuget Package
-      run: dotnet nuget push src/TaskManagement.Lib.Authorization/bin/Debug/*.nupkg
+      working-directory: ${{ env.DIRECTORY }}
+      run: dotnet nuget push TaskManagement.Lib.Authorization/bin/Debug/*.nupkg
