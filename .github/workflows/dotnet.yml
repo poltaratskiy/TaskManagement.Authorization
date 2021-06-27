@@ -23,10 +23,6 @@ jobs:
         source-url: https://nuget.pkg.github.com/poltaratskiy/index.json
       env:
         NUGET_AUTH_TOKEN: ${{ secrets.NUGET_WRITE_KEY }}
-    - name: Build version
-      run: |
-        echo github ref = ${{ github_ref }}
-        echo GITHUB_ENV = $GITHUB_ENV
     - name: Restore dependencies
       working-directory: ${{ env.DIRECTORY }}
       run: dotnet restore
@@ -39,6 +35,6 @@ jobs:
     - name: Create package
       working-directory: ${{ env.DIRECTORY }}
       run: dotnet pack --configuration Debug TaskManagement.Lib.Authorization
-    - name: Publish Nuget Package
-      working-directory: ${{ env.DIRECTORY }}
-      run: dotnet nuget push TaskManagement.Lib.Authorization/bin/Debug/*.nupkg
+    #- name: Publish Nuget Package
+    #  working-directory: ${{ env.DIRECTORY }}
+    #  run: dotnet nuget push TaskManagement.Lib.Authorization/bin/Debug/*.nupkg
