@@ -36,6 +36,6 @@ jobs:
     - name: Create package
       working-directory: ${{ env.DIRECTORY }}
       run: dotnet pack --no-build --configuration ${{ env.CONFIGURATION }} #TaskManagement.Lib.Authorization
-    #- name: Publish Nuget Package
-    #  working-directory: ${{ env.DIRECTORY }}
-    #  run: dotnet nuget push TaskManagement.Lib.Authorization/bin/${{ env.CONFIGURATION }}/*.nupkg
+    - name: Publish Nuget Package
+      working-directory: ${{ env.DIRECTORY }}
+      run: dotnet nuget push TaskManagement.Lib.Authorization/bin/${{ env.CONFIGURATION }}/*.nupkg
