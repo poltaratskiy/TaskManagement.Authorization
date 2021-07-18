@@ -1,0 +1,41 @@
+name: .NET
+
+on:
+  push:
+    branches: [ feature/* ]
+  pull_request:
+    branches: [ feature/* ]
+
+env:
+  DIRECTORY: src
+  CONFIGURATION: Debug
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        source-url: https://nuget.pkg.github.com/poltaratskiy/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{ secrets.NUGET_WRITE_KEY }}
+    - name: Restore dependencies
+      working-directory: ${{ env.DIRECTORY }}
+      run: dotnet restore
+    - name: Build
+      working-directory: ${{ env.DIRECTORY }}
+      run: dotnet build --no-restore --configuration ${{ env.CONFIGURATION }}
+    - name: Test
+      working-directory: ${{ env.DIRECTORY }}
+      run: dotnet test --no-build --verbosity normal
+    - name: Create package
+      working-directory: ${{ env.DIRECTORY }}
+      run: dotnet pack --no-build --configuration ${{ env.CONFIGURATION }} -p:VersionSuffix=-dev-$GITHUB_RUN_NUMBER #TaskManagement.Lib.Authorization
+    #- name: Publish Nuget Package
+    #  working-directory: ${{ env.DIRECTORY }}
+    #  run: dotnet nuget push TaskManagement.Lib.Authorization/bin/${{ env.CONFIGURATION }}/*.nupkg

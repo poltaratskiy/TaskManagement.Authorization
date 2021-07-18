@@ -2,12 +2,13 @@ name: .NET
 
 on:
   push:
-    branches: [ main, feature/* ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
 env:
   DIRECTORY: src
+  CONFIGURATION: Release
 
 jobs:
   build:
@@ -28,13 +29,13 @@ jobs:
       run: dotnet restore
     - name: Build
       working-directory: ${{ env.DIRECTORY }}
-      run: dotnet build --no-restore --configuration Debug
+      run: dotnet build --no-restore --configuration ${{ env.CONFIGURATION }}
     - name: Test
       working-directory: ${{ env.DIRECTORY }}
       run: dotnet test --no-build --verbosity normal
     - name: Create package
       working-directory: ${{ env.DIRECTORY }}
-      run: dotnet pack --no-build --configuration Debug -p:VersionSuffix=$GITHUB_RUN_NUMBER #TaskManagement.Lib.Authorization
+      run: dotnet pack --no-build --configuration ${{ env.CONFIGURATION }} #TaskManagement.Lib.Authorization
     #- name: Publish Nuget Package
     #  working-directory: ${{ env.DIRECTORY }}
-    #  run: dotnet nuget push TaskManagement.Lib.Authorization/bin/Debug/*.nupkg
+    #  run: dotnet nuget push TaskManagement.Lib.Authorization/bin/${{ env.CONFIGURATION }}/*.nupkg
